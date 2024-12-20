@@ -26,6 +26,11 @@ jobs:
     - name: Validate Terraform
       run: terraform validate
 
+    - name: Install tflint
+      run: |
+        curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+        sudo mv tflint /usr/local/bin/
+
     - name: Lint Terraform
       run: tflint
       env:
