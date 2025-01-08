@@ -52,4 +52,16 @@ resource "helm_release" "helm-arc-runners" {
 
   }
 
+  set {
+    name  = "controllerServiceAccount.namespace"
+    value = "github"
+
+  }
+
+  set {
+    name  = "controllerServiceAccount.name"
+    value = "actions-runner-controller-gha-rs-controller"
+
+  }
+
 }
