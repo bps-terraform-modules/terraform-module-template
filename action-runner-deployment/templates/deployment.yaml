@@ -1,0 +1,10 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: runner-{{ .Values.type }}-{{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  template:
+    spec:
+      {{ .Values.type }}: {{ .Values.name }}

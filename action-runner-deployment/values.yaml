@@ -1,0 +1,3 @@
+type: organization
+name: organization_or_repo_name
+replicas: 2
