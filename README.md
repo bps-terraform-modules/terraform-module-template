@@ -10,10 +10,10 @@ Deploys a scalable actions runner setup into AKS that supports both at the Organ
 
 	```hcl
 	module "github-runners" {
-	source       = "git@github.com:bps-cloudops/terraform-module-aks-github-runners.git?ref=v1.0.0"
-	key_vault_name = "github-ar-bps-eai"
-	runner_name = "aks-eai-nonprod"
-	github_url = "https://github.com/bps-eai"
+		source       = "git@github.com:bps-cloudops/terraform-module-aks-github-runners.git?ref=v1.0.1"
+		key_vault_name = "github-ar-bps-eai"
+		runner_name = "aks-eai-nonprod"
+		github_url = "https://github.com/bps-eai"
 
 	}
 	```
