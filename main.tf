@@ -40,6 +40,8 @@ resource "helm_release" "helm-arc-runners" {
   chart      = "gha-runner-scale-set"
   namespace  = "github"
 
+  values = [file("${path.module}/runner-values.yaml")]
+
   set {
     name  = "githubConfigUrl"
     value = var.github_url
@@ -53,15 +55,41 @@ resource "helm_release" "helm-arc-runners" {
   }
 
   set {
-    name  = "controllerServiceAccount.namespace"
+    name  = "template.controllerServiceAccount.namespace"
     value = "github"
 
   }
 
   set {
-    name  = "controllerServiceAccount.name"
+    name  = "template.controllerServiceAccount.name"
     value = "actions-runner-controller-gha-rs-controller"
 
   }
 
+  set {
+    name  = "template.spec.serviceAccountName"
+    value = "actions-runner-controller-gha-rs-controller"
+
+  }
+
+}
+
+resource "helm_release" "helm-arc-runners-customrole" {
+  name             = "github-actions-roles"
+  chart            = "${path.module}/github-actions-roles" # Specify the relative path to the Helm chart within the repo
+  namespace        = "github"
+  version          = "0.0.1"
+  create_namespace = true
+
+  set {
+    name  = "service_account.name"
+    value = "actions-runner-controller-gha-rs-controller"
+
+  }
+
+  set {
+    name  = "service_account.namespace"
+    value = "github"
+
+  }
 }

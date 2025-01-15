@@ -1,0 +1,9 @@
+# service account that got created by deploying the github actions runner
+service_account:
+  name: actions-runner-controller-gha-rs-controller
+  namespace: github
+# cluster role that gets deployed
+cluster_role:
+  name: github-actions-runner-custom-role
+cluster_role_binding:
+  name: github-actions-runner-custom-rolebinding
