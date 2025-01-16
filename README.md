@@ -23,33 +23,34 @@ Deploys a scalable actions runner setup into AKS that supports both at the Organ
 1. Create a file in the root of your project under `.github/workflows/<job_name>.yml`
 
 2. Copy/Paste following template and update as neccessary
-	```yaml
-	name: Deploy
+```yaml
+name: Deploy
 
-	on:
-	push:
-		branches:
-		- main # Adjust branch name as necessary
+on:
+push:
+	branches:
+	- main # Adjust branch name as necessary
 
-	jobs:
-	deploy:
-		runs-on: <runner_name>
-		steps:
-		- name: Checkout repository
+jobs:
+deploy:
+	runs-on: <runner_name>
+	steps:
+	- name: Checkout repository
 		uses: actions/checkout@v3
 
-		- name: Run shell command
-		shell: bash
-		run: |
-			curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-			chmod +x kubectl
-			mkdir -p ~/.local/bin
-			mv ./kubectl ~/.local/bin/kubectl
-			export PATH="$PATH:$HOME/.local/bin"
+	- name: Install Kubectl
+    shell: bash
+    run: |
+      curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      chmod +x kubectl
+      mkdir -p ~/.local/bin
+      sudo mv kubectl /usr/local/bin/
 
-			kubectl get pods
-
-	```
+	- name: Run shell command
+    shell: bash
+    run: |
+      kubectl get pods
+```
 
 ## Variables
 | Name | Description | Type | Default | Required |
