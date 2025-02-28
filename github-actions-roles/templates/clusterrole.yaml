@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.cluster_role.name }}
 rules:
   - apiGroups: ["", "apps", "extensions"]
-    resources: ["pods", "deployments", "replicasets", "services", "configmaps", "secrets", "statefulsets"]
+    resources: ["pods", "deployments", "replicasets", "services", "configmaps", "secrets", "statefulsets", "pods/exec"]
     verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
   - apiGroups: ["", "batch"]
     resources: ["jobs", "cronjobs"]
