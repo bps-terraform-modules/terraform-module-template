@@ -70,9 +70,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     network_policy      = "azure"
     network_plugin_mode = "overlay"
     load_balancer_sku   = "standard"
-    pod_cidr            = "10.224.0.0/12" # Overlay pod network
-    service_cidr        = "10.3.0.0/16"
-    dns_service_ip      = "10.3.0.10"
+    pod_cidr            = "100.96.0.0/12" # Overlay pod network
+    service_cidr        = "100.64.0.0/16"
+    dns_service_ip      = "10.64.0.10"
   }
 
   azure_active_directory_role_based_access_control {
