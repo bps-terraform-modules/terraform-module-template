@@ -62,14 +62,15 @@ variable "service_mesh" {
   }
 }
 
-variable "ingress" {
-  description = "Ingress Type to use: 'nginx' or 'none'."
-  type        = string
-  validation {
-    condition     = contains(["nginx", "none"], var.ingress)
-    error_message = "Invalid values for ingress. Allowed values are: 'nginx', 'none'."
-  }
-}
+# Unused
+# variable "ingress" {
+#   description = "Ingress Type to use: 'nginx' or 'none'."
+#   type        = string
+#   validation {
+#     condition     = contains(["nginx", "none"], var.ingress)
+#     error_message = "Invalid values for ingress. Allowed values are: 'nginx', 'none'."
+#   }
+# }
 
 variable "system_node_pool" {
   description = "Definition for the system node pool"
@@ -109,4 +110,28 @@ variable "service_endpoints" {
   type        = list(string)
   default     = ["Microsoft.ContainerRegistry", "Microsoft.EventHub", "Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.AzureActiveDirectory"]
 
+}
+
+variable "network_profile" {
+  description = "Definition for the system node pool"
+  type = object({
+    network_plugin      = optional(string)
+    network_policy      = optional(string)
+    network_plugin_mode = optional(string)
+    load_balancer_sku   = optional(string)
+    pod_cidr            = optional(string) # Overlay pod network
+    service_cidr        = optional(string)
+    dns_service_ip      = optional(string)
+  })
+
+  default = {
+    network_plugin      = "azure"
+    network_policy      = "azure"
+    network_plugin_mode = "overlay"
+    load_balancer_sku   = "standard"
+    pod_cidr            = "100.96.0.0/12" # Overlay pod network
+    service_cidr        = "100.64.0.0/16"
+    dns_service_ip      = "10.64.0.10"
+
+  }
 }
