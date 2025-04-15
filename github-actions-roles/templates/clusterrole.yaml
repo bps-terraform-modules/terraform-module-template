@@ -8,7 +8,7 @@ rules:
     resources: ["customresourcedefinitions"]
     verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
   - apiGroups: ["", "apps", "extensions"]
-    resources: ["pods", "deployments", "replicasets", "services", "configmaps", "secrets", "statefulsets", "pods/exec", "endpoints", "serviceaccounts"]
+    resources: ["pods", "deployments", "replicasets", "services", "configmaps", "secrets", "statefulsets", "pods/exec", "endpoints", "serviceaccounts", "namespaces"]
     verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
   - apiGroups: ["", "batch"]
     resources: ["jobs", "cronjobs"]
