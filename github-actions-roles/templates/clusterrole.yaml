@@ -39,3 +39,6 @@ rules:
       - update
       - patch
       - delete
+  - apiGroups: ["autoscaling"]
+    resources: ["horizontalpodautoscalers"]
+    verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
