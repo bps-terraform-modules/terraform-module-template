@@ -8,7 +8,10 @@ variable "runner_name" {
   description = "Name of the runner scale set that will be used for targeting, ie a cluster name"
 }
 
-variable "github_url" {
-  type        = string
+variable "github_urls" {
+  type = list(object({
+    name = string
+    url  = string
+  }))
   description = "URL of organization or repo, ie https://github.com/bps-eai"
 }

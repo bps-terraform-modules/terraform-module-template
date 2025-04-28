@@ -35,7 +35,8 @@ resource "helm_release" "helm-arc" {
 }
 
 resource "helm_release" "helm-arc-runners" {
-  name       = var.runner_name
+  for_each = { for release in var.github_urls : release.name => release }
+  name       = "${var.runner_name}-${each.value.name}"
   repository = "oci://ghcr.io/actions/actions-runner-controller-charts"
   chart      = "gha-runner-scale-set"
   namespace  = "github"
@@ -44,7 +45,7 @@ resource "helm_release" "helm-arc-runners" {
 
   set {
     name  = "githubConfigUrl"
-    value = var.github_url
+    value = each.value.url
 
   }
 
