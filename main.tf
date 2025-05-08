@@ -78,6 +78,13 @@ resource "helm_release" "helm-arc-runners" {
 
   }
 
+  set {
+    name  = "template.spec.serviceAccountName"
+    value = "sa-${each.value.name}"
+
+  }
+
+
 }
 
 resource "helm_release" "helm-arc-runners-customrole" {
