@@ -44,3 +44,7 @@ output "kube_config" {
 output "nodes_subnet_id" {
   value = azurerm_subnet.nodes_subnet.id
 }
+
+output "nodes_vnet_id" {
+	value = azurerm_virtual_network.nodes_vnet.id
+}
