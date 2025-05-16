@@ -42,10 +42,9 @@ rules:
   - apiGroups: ["autoscaling"]
     resources: ["horizontalpodautoscalers"]
     verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
-  # cert-manager
   - apiGroups: ["cert-manager.io"]
-      resources: ["certificates", "certificaterequests", "issuers"]
-      verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+    resources: ["certificates", "certificaterequests", "issuers"]
+    verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
   - apiGroups: ["cert-manager.io"]
     resources: ["certificates/status"]
     verbs: ["update"]
