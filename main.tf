@@ -22,7 +22,7 @@ data "azurerm_key_vault_secret" "repo-pat" {
 
 resource "helm_release" "helm-arc" {
   for_each         = { for repo in var.github_urls : repo.name => repo }
-  name             = "actions-runner-controller-${var.runner_name}-${each.value.name}"
+  name             = "arc-${var.runner_name}-${each.value.name}"
   repository       = "oci://ghcr.io/actions/actions-runner-controller-charts"
   chart            = "gha-runner-scale-set-controller"
   create_namespace = true
