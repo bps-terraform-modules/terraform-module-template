@@ -89,7 +89,7 @@ resource "helm_release" "helm-arc-runners" {
 
 resource "helm_release" "helm-arc-runners-customrole" {
   for_each         = { for repo in var.github_urls : repo.name => repo }
-  name             = "github-actions-roles"
+  name             = "${each.value.name}-roles"
   chart            = "${path.module}/github-actions-roles" # Specify the relative path to the Helm chart within the repo
   namespace        = "github"
   version          = "0.0.10"
@@ -98,6 +98,18 @@ resource "helm_release" "helm-arc-runners-customrole" {
   set {
     name  = "service_account.name"
     value = "sa-${each.value.name}"
+
+  }
+
+  set {
+    name  = "cluster_role.name"
+    value = "role-${each.value.name}"
+
+  }
+
+  set {
+    name  = "cluster_role_binding.name"
+    value = "rolebinding-${each.value.name}"
 
   }
 
