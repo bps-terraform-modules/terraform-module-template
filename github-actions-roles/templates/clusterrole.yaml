@@ -58,5 +58,5 @@ rules:
     resources: ["secretproviderclasses"]
     verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
   - apiGroups: ["storage.k8s.io"]
-    resources: ["storageclasses"]
+    resources: ["storageclasses","persistentvolumeclaims", "persistentvolumes"]
     verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
