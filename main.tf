@@ -92,7 +92,7 @@ resource "helm_release" "helm-arc-runners-customrole" {
   name             = "${each.value.name}-roles"
   chart            = "${path.module}/github-actions-roles" # Specify the relative path to the Helm chart within the repo
   namespace        = "github"
-  version          = "0.0.11"
+  version          = "0.0.12"
   create_namespace = true
 
   set {
