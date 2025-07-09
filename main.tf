@@ -27,6 +27,7 @@ resource "helm_release" "helm-arc" {
   chart            = "gha-runner-scale-set-controller"
   create_namespace = true
   namespace        = "github"
+  version          = "0.12.1"
 
   set {
     name  = "githubConfigSecret.github_token"
@@ -51,8 +52,8 @@ resource "helm_release" "helm-arc-runners" {
   repository = "oci://ghcr.io/actions/actions-runner-controller-charts"
   chart      = "gha-runner-scale-set"
   namespace  = "github"
-
-  values = [file("${path.module}/runner-values.yaml")]
+  version    = "0.12.1"
+  values     = [file("${path.module}/runner-values.yaml")]
 
   set {
     name  = "githubConfigUrl"
