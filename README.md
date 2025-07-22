@@ -3,25 +3,18 @@ A test repository for Terraform module
 
 editing
 <!-- BEGIN_TF_DOCS -->
-## Requirements
 
-No requirements.
 
-## Providers
+## Example
 
-| Name | Version |
-|------|---------|
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+```hcl
+module "example" {
+  source  = "app.terraform.io/basspro/example/module"
+  version = "1.1.0"
 
-## Modules
-
-No modules.
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [null_resource.example](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+  example_id = "example-001"
+}
+```
 
 ## Inputs
 
@@ -33,5 +26,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id) | The ID of the null resource |
+| <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id) | The ID of the null resource |  
 <!-- END_TF_DOCS -->
