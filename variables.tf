@@ -131,7 +131,7 @@ variable "network_profile" {
     load_balancer_sku   = "standard"
     pod_cidr            = "100.96.0.0/12" # Overlay pod network
     service_cidr        = "100.64.0.0/16"
-    dns_service_ip      = "10.64.0.10"
+    dns_service_ip      = "100.64.0.10"
 
   }
 }
