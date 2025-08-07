@@ -1,0 +1,24 @@
+name: Generate Terraform Docs
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tf-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Generate Terraform Docs
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
+          git-commit-message: "chore: update Terraform documentation"

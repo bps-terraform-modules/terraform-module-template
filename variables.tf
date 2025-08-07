@@ -43,19 +43,18 @@ variable "tags" {
 
 variable "cluster_name" {
   type        = string
-  default     = "jeff-aks-test"
   description = "aks cluster's name"
 }
 
 variable "kubernetes_version" {
   type        = string
   description = "AKS Version Number 1.xx.x"
-  default     = "1.30.0"
 }
 
 variable "service_mesh" {
   description = "Service mesh to use: 'istio', 'linkerd', or 'none'."
   type        = string
+  default = "linkerd"
   validation {
     condition     = contains(["istio", "linkerd", "none"], var.service_mesh)
     error_message = "Invalid service mesh. Allowed values are: 'istio', 'linkerd', 'none'."
