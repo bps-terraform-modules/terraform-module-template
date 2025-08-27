@@ -46,6 +46,12 @@ variable "cluster_name" {
   description = "aks cluster's name"
 }
 
+variable "vnet_cidr" {
+  description = "IP Range to use for entire AKS cluster"
+  type        = string
+
+}
+
 variable "kubernetes_version" {
   type        = string
   description = "AKS Version Number 1.xx.x"
@@ -54,7 +60,7 @@ variable "kubernetes_version" {
 variable "service_mesh" {
   description = "Service mesh to use: 'istio', 'linkerd', or 'none'."
   type        = string
-  default = "linkerd"
+  default     = "linkerd"
   validation {
     condition     = contains(["istio", "linkerd", "none"], var.service_mesh)
     error_message = "Invalid service mesh. Allowed values are: 'istio', 'linkerd', 'none'."
@@ -79,7 +85,6 @@ variable "system_node_pool" {
     enable_auto_scaling = optional(bool)
     max_count           = optional(number)
     min_count           = optional(number)
-    vnet_cidr           = string
   })
 
   default = {
@@ -88,7 +93,6 @@ variable "system_node_pool" {
     node_count          = 1
     max_count           = null
     min_count           = null
-    vnet_cidr           = ""
 
   }
 }

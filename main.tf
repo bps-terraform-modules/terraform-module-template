@@ -2,7 +2,7 @@ resource "azurerm_virtual_network" "nodes_vnet" {
   name                = "vnet-nodes-${var.cluster_name}"
   location            = var.resource_group.location
   resource_group_name = var.resource_group.name
-  address_space       = [var.system_node_pool.vnet_cidr]
+  address_space       = [var.vnet_cidr]
   dns_servers         = var.dns_servers
 
   tags = var.tags
@@ -13,7 +13,7 @@ resource "azurerm_subnet" "nodes_subnet" {
   name                              = "subnet-nodes-${var.cluster_name}"
   resource_group_name               = var.resource_group.name
   virtual_network_name              = azurerm_virtual_network.nodes_vnet.name
-  address_prefixes                  = [var.system_node_pool.vnet_cidr]
+  address_prefixes                  = [var.vnet_cidr]
   service_endpoints                 = var.service_endpoints
   private_endpoint_network_policies = "Enabled"
 
