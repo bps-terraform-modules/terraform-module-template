@@ -32,6 +32,11 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   dns_prefix                          = var.cluster_name
   azure_policy_enabled                = true
   tags                                = var.tags
+
+  automatic_upgrade_channel = var.automatic_upgrade_channel
+  node_os_upgrade_channel   = var.node_os_upgrade_channel
+  sku_tier                  = var.sku_tier
+  support_plan              = var.support_plan
   monitor_metrics {
     annotations_allowed = null
     labels_allowed      = null

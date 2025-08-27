@@ -138,3 +138,27 @@ variable "network_profile" {
 
   }
 }
+
+variable "automatic_upgrade_channel" {
+  description = "The channel used for automatic upgrades"
+  type        = string
+  default     = "none"
+}
+
+variable "node_os_upgrade_channel" {
+  description = "The channel used for node OS upgrades"
+  type        = string
+  default     = "NodeImage"
+}
+
+variable "sku_tier" {
+  description = "The SKU tier for the AKS cluster"
+  type        = string
+  default     = "Free"
+}
+
+variable "support_plan" {
+  description = "The support plan for the AKS cluster"
+  type        = string
+  default     = "KubernetesOfficial"
+}
