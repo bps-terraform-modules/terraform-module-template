@@ -85,6 +85,7 @@ variable "system_node_pool" {
     enable_auto_scaling = optional(bool)
     max_count           = optional(number)
     min_count           = optional(number)
+    zones               = optional(list(string))
   })
 
   default = {
@@ -93,6 +94,7 @@ variable "system_node_pool" {
     node_count          = 1
     max_count           = null
     min_count           = null
+    zones               = ["1", "2", "3"]
 
   }
 }

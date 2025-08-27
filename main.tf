@@ -56,6 +56,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     only_critical_addons_enabled = true
     os_sku                       = "Ubuntu"
     temporary_name_for_rotation  = "systemtemp"
+    zones                        = var.system_node_pool.zones
 
     upgrade_settings {
       drain_timeout_in_minutes      = 0
