@@ -11,5 +11,7 @@ on:
 jobs:
   Lint-PR:
     uses: bps-terraform-modules/terraform-modules-actions--linting/.github/workflows/terraform-lint.yml@main
+    with:
+      working-directory: examples/example1
 
 
