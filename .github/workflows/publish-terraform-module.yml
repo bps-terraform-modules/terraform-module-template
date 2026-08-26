@@ -1,0 +1,34 @@
+name: Publish Terraform Module to Nexus
+
+permissions:
+  contents: read
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  Lint-Publish:
+    uses: bps-terraform-modules/terraform-modules-actions--linting/.github/workflows/terraform-lint.yml@main
+
+  publish:
+    needs: Lint-Publish
+    uses: bps-terraform-modules/terraform-modules-actions--publish/.github/workflows/publish.yml@main
+    with:
+      module_name: ${{ github.event.repository.name }}
+      module_namespace: basspro
+      module_system: module
+      nexus_url: https://artifacts.devops.az.basspro.net
+      nexus_repository: terraform-internal
+    secrets:
+      nexus_user: ${{ secrets.NEXUS_USER }}
+      nexus_password: ${{ secrets.NEXUS_PASSWORD }}
+
+  notify-teams:
+    needs: [Lint-Publish, publish]
+    uses: bps-terraform-modules/terraform-modules-actions--teams-message/.github/workflows/notify-teams.yml@main
+    with:
+      module_name: ${{ github.event.repository.name }}
+    secrets:
+      teams_webhook: ${{ vars.TEAMS_WEBHOOK }}

@@ -1,0 +1,15 @@
+name: Lint Terraform
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Lint-PR:
+    uses: bps-terraform-modules/terraform-modules-actions--linting/.github/workflows/terraform-lint.yml@main
+
+
