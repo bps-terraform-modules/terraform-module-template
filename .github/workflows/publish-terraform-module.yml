@@ -11,6 +11,8 @@ on:
 jobs:
   Lint-Publish:
     uses: bps-terraform-modules/terraform-modules-actions--linting/.github/workflows/terraform-lint.yml@main
+    with:
+      working-directory: examples/example1
 
   publish:
     needs: Lint-Publish
