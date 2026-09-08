@@ -10,13 +10,13 @@ on:
 
 jobs:
   Lint-Publish:
-    uses: bps-terraform-modules/terraform-modules-actions--linting/.github/workflows/terraform-lint.yml@main
+    uses: bps-terraform-modules/actions--linting/.github/workflows/terraform-lint.yml@main
     with:
       working-directory: examples/example1
 
   publish:
     needs: Lint-Publish
-    uses: bps-terraform-modules/terraform-modules-actions--publish/.github/workflows/publish.yml@main
+    uses: bps-terraform-modules/actions--publish/.github/workflows/publish.yml@main
     with:
       module_name: ${{ github.event.repository.name }}
       module_namespace: basspro
@@ -29,7 +29,7 @@ jobs:
 
   notify-teams:
     needs: [Lint-Publish, publish]
-    uses: bps-terraform-modules/terraform-modules-actions--teams-message/.github/workflows/notify-teams.yml@main
+    uses: bps-terraform-modules/actions--teams-message/.github/workflows/notify-teams.yml@main
     with:
       module_name: ${{ github.event.repository.name }}
     secrets:
